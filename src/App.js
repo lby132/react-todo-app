@@ -2,7 +2,6 @@ import "./App.css";
 import React, {useState, useCallback} from "react";
 import Lists from "./components/Lists";
 import Form from "./components/Form";
-import List from "./components/List";
 
 export default function App() {
 
