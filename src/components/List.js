@@ -5,7 +5,7 @@ const List = React.memo(({key, id, title, completed, todoData, setTodoData, prov
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(title);
 
-    const handleCompleteChange = (id) => {
+    const handleCompleChange = (id) => {
         let newTodoData = todoData.map(data => {
             if (data.id === id) {
                 data.completed = !data.completed;
@@ -13,6 +13,7 @@ const List = React.memo(({key, id, title, completed, todoData, setTodoData, prov
             return data;
         });
         setTodoData(newTodoData);
+        localStorage.setItem('todoData', JSON.stringify([newTodoData]));
     };
 
     const handleEditChange = (event => {
@@ -29,6 +30,7 @@ const List = React.memo(({key, id, title, completed, todoData, setTodoData, prov
             return data;
         })
         setTodoData(newTodoData);
+        localStorage.setItem('todoData', JSON.stringify([newTodoData]));
         setIsEditing(false);
     }
 
@@ -64,7 +66,7 @@ const List = React.memo(({key, id, title, completed, todoData, setTodoData, prov
                  className={`${snapshot.isDragging ? "bg-gray-400" : "bg-gray-100"} flex items-center justify-between w-full px-4 py-1 my-2 text-gray-400 border rounded`}>
                 <div className="items-center">
                     <input type="checkbox" defaultChecked={false}
-                           onChange={() => handleCompleteChange(id)}/>{" "}
+                           onChange={() => handleCompleChange(id)}/>{" "}
                     <span
                         className={completed ? "line-through" : undefined}>{title}</span>
                 </div>

@@ -15,7 +15,8 @@ const Lists = React.memo(({todoData, setTodoData, handleClick}) => {
 
         newTodoData.splice(result.destination.indent, 0, reorderdItem);
         setTodoData(newTodoData);
-    }
+        localStorage.setItem('todoData', JSON.stringify([newTodoData]));
+    };
     return (
         <div>
             <DragDropContext onDragEnd={handleEnd}>
